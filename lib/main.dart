@@ -1,16 +1,29 @@
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:provider/provider.dart';
 import 'package:video_app/test.dart';
 import 'package:video_app/theme/app_theme.dart';
 import 'package:video_app/theme_notifier.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Window.initialize();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<ThemeNotifier>(create: (e) => ThemeNotifier()),
+      ChangeNotifierProvider<ThemeNotifier>(create: (context) => ThemeNotifier()),
     ],
     child: const MyApp(),
   ));
+  doWhenWindowReady(() {
+    final win = appWindow;
+    const initialSize = Size(600, 450);
+    win.minSize = initialSize;
+    win.size = initialSize;
+    win.alignment = Alignment.center;
+    win.title = "Custom Window Demo";
+    win.show();
+  });
 }
 
 class MyApp extends StatelessWidget {

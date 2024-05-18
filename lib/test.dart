@@ -13,19 +13,12 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
-            onPressed: () {
-              themeNotifier.toggleTheme();
-            },
+            onPressed: () => themeNotifier.toggleTheme(),
           ),
         ],
-      ),
-      body: const Center(
-        child: Text(
-          "Hello, World!",
-        ),
       ),
     );
   }
