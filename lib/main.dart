@@ -1,25 +1,33 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:video_app/test.dart';
-import 'package:video_app/theme/app_theme.dart';
+import "dart:io" show Platform;
+import "package:flutter/foundation.dart" show kIsWeb;
+import "package:bitsdojo_window/bitsdojo_window.dart";
+import "package:flutter/material.dart";
+import "package:flutter_acrylic/flutter_acrylic.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:video_app/test.dart";
+import "package:video_app/theme/app_theme.dart";
 
-final themeProvider = StateProvider<bool>((ref) => false);
+final themeProvider = StateProvider<bool>((ref) => true);
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Window.initialize();
+  if (!kIsWeb) {
+    await Window.initialize();
+  }
   runApp(const ProviderScope(child: MyApp()));
-  doWhenWindowReady(() {
-    final win = appWindow;
-    const initialSize = Size(600, 450);
-    win.minSize = initialSize;
-    win.size = initialSize;
-    win.alignment = Alignment.center;
-    win.title = "Custom Window Demo";
-    win.show();
-  });
+  setupWindow();
+}
+
+void setupWindow() {
+  if (!kIsWeb && (Platform.isWindows || Platform.isMacOS)) {
+    doWhenWindowReady(() {
+      const initialSize = Size(1200, 800);
+      appWindow.minSize = initialSize;
+      appWindow.size = initialSize;
+      appWindow.alignment = Alignment.center;
+      appWindow.show();
+    });
+  }
 }
 
 class MyApp extends ConsumerWidget {
@@ -29,12 +37,11 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkTheme = ref.watch(themeProvider);
     return MaterialApp(
-      title: "Flutter Demo",
       theme: appThemeData[AppTheme.Light],
       darkTheme: appThemeData[AppTheme.Dark],
       themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-      home: const MyHomePage(title: "Flutter Demo Home Page"),
-      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(),
+      // debugShowCheckedModeBanner: false,
     );
   }
 }
