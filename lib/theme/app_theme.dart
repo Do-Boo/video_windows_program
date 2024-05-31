@@ -14,8 +14,8 @@ final appThemeData = {
   ),
   AppTheme.Dark: ThemeData(
     brightness: Brightness.dark,
-    primaryColor: const Color.fromARGB(255, 16, 16, 16),
-    scaffoldBackgroundColor: const Color.fromARGB(255, 16, 16, 16),
+    primaryColor: const Color.fromARGB(255, 15, 15, 15),
+    scaffoldBackgroundColor: const Color.fromARGB(255, 15, 15, 15),
     colorScheme: const ColorScheme.dark().copyWith(secondary: Colors.red),
   ),
 };
