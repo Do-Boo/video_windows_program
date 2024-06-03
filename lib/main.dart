@@ -2,7 +2,6 @@ import "dart:io" show Platform;
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:bitsdojo_window/bitsdojo_window.dart";
 import "package:flutter/material.dart";
-import "package:flutter_acrylic/flutter_acrylic.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:video_app/test.dart";
 import "package:video_app/theme/app_theme.dart";
@@ -11,9 +10,6 @@ final themeProvider = StateProvider<bool>((ref) => true);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (!kIsWeb) {
-    await Window.initialize();
-  }
   runApp(const ProviderScope(child: MyApp()));
   setupWindow();
 }

@@ -1,60 +1,49 @@
 import "package:flutter/foundation.dart" show kIsWeb;
-import "package:bitsdojo_window/bitsdojo_window.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_svg/svg.dart";
-import "package:video_app/main.dart";
+import "package:video_app/widgets/main_app_bar.dart";
+import "package:video_app/widgets/side_menu_bar.dart";
+import "package:video_app/widgets/window_title_bar.dart";
 
 class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDarkTheme = ref.watch(themeProvider);
+    ThemeData theme = Theme.of(context);
     return Scaffold(
       body: Column(
         children: [
           !kIsWeb ? const WindowTitleBar() : const SizedBox(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 56,
+          const MainAppBar(),
+          Expanded(
             child: Row(
               children: [
-                IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/images/icons/icon_menu.svg",
-                    color: isDarkTheme ? Colors.white : Colors.black,
-                    colorBlendMode: BlendMode.srcIn,
+                Stack(
+                  children: [
+                    Container(
+                      width: 72,
+                      color: theme.primaryColor,
+                      child: const SideMenuBar(),
+                    ),
+                    // Container(width: 216, color: theme.primaryColor),
+                  ],
+                ),
+                const Expanded(
+                  child: Stack(
+                    children: [
+                      Placeholder(),
+                      SizedBox(
+                        height: 42,
+                        child: Placeholder(),
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
                 ),
               ],
             ),
           ),
-          const Expanded(child: Placeholder()),
         ],
-      ),
-    );
-  }
-}
-
-class WindowTitleBar extends ConsumerWidget {
-  const WindowTitleBar({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      color: const Color(0x000000ff),
-      height: 30,
-      child: WindowTitleBarBox(
-        child: Row(
-          children: [
-            Expanded(child: MoveWindow()),
-            MinimizeWindowButton(),
-            MaximizeWindowButton(),
-            CloseWindowButton(),
-          ],
-        ),
       ),
     );
   }
