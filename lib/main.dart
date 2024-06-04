@@ -7,6 +7,7 @@ import "package:video_app/test.dart";
 import "package:video_app/theme/app_theme.dart";
 
 final themeProvider = StateProvider<bool>((ref) => true);
+final sideBarProvider = StateProvider<bool>((ref) => false);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
