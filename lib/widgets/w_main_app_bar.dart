@@ -14,6 +14,7 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDarkTheme = ref.watch(themeProvider);
     final sideBarVisible = ref.watch(sideBarProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -24,7 +25,6 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
             icon: SvgPicture.asset(
               "assets/images/icons/icon_menu.svg",
               color: theme.hintColor,
-              // colorBlendMode: BlendMode.srcIn,
             ),
             onPressed: () {
               ref.read(sideBarProvider.notifier).state = !sideBarVisible;
@@ -33,8 +33,16 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
           const Text("타이틀"),
           const Expanded(child: TextField()),
           IconButton(icon: const Icon(Icons.ac_unit_sharp), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.ac_unit_sharp), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.ac_unit_sharp), onPressed: () {}),
+          IconButton(
+              icon: const Icon(Icons.access_alarm),
+              onPressed: () {
+                ref.read(themeProvider.notifier).state = !isDarkTheme;
+              }),
+          IconButton(
+              icon: const Icon(Icons.ac_unit_sharp),
+              onPressed: () {
+                ref.read(themeProvider.notifier).state = !isDarkTheme;
+              }),
         ],
       ),
     );

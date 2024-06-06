@@ -30,7 +30,7 @@ class _TagMenubarState extends ConsumerState<TagMenubar> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: theme.hintColor.withOpacity(0.1),
+                    color: theme.colorScheme.onSurface.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(e.title),

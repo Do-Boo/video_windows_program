@@ -8,6 +8,7 @@ import "package:video_app/theme/app_theme.dart";
 
 final themeProvider = StateProvider<bool>((ref) => true);
 final sideBarProvider = StateProvider<bool>((ref) => false);
+final pageNameProvider = StateProvider<String>((ref) => "VideoPage");
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

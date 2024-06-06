@@ -12,10 +12,15 @@ class SideMenuBar extends ConsumerStatefulWidget {
 class _SideMenuBarState extends ConsumerState<SideMenuBar> {
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     final data = SideMenuData();
-    return ListView.builder(
-      itemCount: data.menu.length,
-      itemBuilder: (context, index) => SideMenuList(data: data, index: index),
+    return Container(
+      width: 72,
+      color: theme.primaryColor,
+      child: ListView.builder(
+        itemCount: data.menu.length,
+        itemBuilder: (context, index) => SideMenuList(data: data, index: index),
+      ),
     );
   }
 }
@@ -45,13 +50,13 @@ class SideMenuList extends StatelessWidget {
             children: [
               Icon(
                 data.menu[index].icon,
-                color: theme.hintColor,
+                color: theme.colorScheme.onSurface,
               ),
               Text(
                 data.menu[index].title,
                 style: TextStyle(
                   fontSize: 10,
-                  color: theme.hintColor,
+                  color: theme.colorScheme.onSurface,
                   fontWeight: FontWeight.normal,
                 ),
               ),

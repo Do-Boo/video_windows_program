@@ -13,8 +13,8 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    final itemHeight = size.height / 2;
     final itemWidth = size.width / 2;
+    final itemHeight = itemWidth * 0.8;
 
     return Padding(
       padding: const EdgeInsets.all(4),
