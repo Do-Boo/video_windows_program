@@ -2,7 +2,9 @@ import "dart:io" show Platform;
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:bitsdojo_window/bitsdojo_window.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:media_kit/media_kit.dart";
 import "package:video_app/test.dart";
 import "package:video_app/theme/app_theme.dart";
 
@@ -10,8 +12,18 @@ final themeProvider = StateProvider<bool>((ref) => true);
 final sideBarProvider = StateProvider<bool>((ref) => false);
 final pageNameProvider = StateProvider<String>((ref) => "VideoPage");
 
+class PlatformSpecificCode {
+  static const MethodChannel _channel = MethodChannel("com.example.videoApp");
+
+  static Future<String> getNativeData() async {
+    final String result = await _channel.invokeMethod("getNativeData");
+    return result;
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));
   setupWindow();
 }

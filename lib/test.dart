@@ -1,9 +1,7 @@
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:video_app/data/page_data.dart";
 import "package:video_app/main.dart";
-import "package:video_app/widgets/w_home_page.dart";
 import "package:video_app/widgets/w_main_app_bar.dart";
 import "package:video_app/widgets/w_side_menu_bar.dart";
 import "package:video_app/widgets/w_tag_menu_bar.dart";
@@ -18,7 +16,7 @@ class MyHomePage extends ConsumerWidget {
     ThemeData theme = Theme.of(context);
     final sideBarVisible = ref.watch(sideBarProvider);
     final pageName = ref.watch(pageNameProvider);
-    final page = PageData();
+    // final page = PageData();
     return Scaffold(
       body: Column(
         children: [
