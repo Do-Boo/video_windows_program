@@ -11,6 +11,7 @@ class MainPage extends ConsumerStatefulWidget {
 class _MainPageState extends ConsumerState<MainPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     var size = MediaQuery.of(context).size;
 
     final itemWidth = size.width / 2;
@@ -28,7 +29,7 @@ class _MainPageState extends ConsumerState<MainPage> {
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.white,
+                color: theme.hintColor,
                 width: 1,
               ),
             ),

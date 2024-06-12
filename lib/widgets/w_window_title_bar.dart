@@ -1,7 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:video_app/main.dart';
 
 class WindowTitleBar extends ConsumerWidget {
   const WindowTitleBar({super.key});

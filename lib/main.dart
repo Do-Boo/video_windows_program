@@ -10,7 +10,7 @@ import "package:video_app/theme/app_theme.dart";
 
 final themeProvider = StateProvider<bool>((ref) => true);
 final sideBarProvider = StateProvider<bool>((ref) => false);
-final pageNameProvider = StateProvider<String>((ref) => "VideoPage");
+final pageNameProvider = StateProvider<String>((ref) => "Home");
 
 class PlatformSpecificCode {
   static const MethodChannel _channel = MethodChannel("com.example.videoApp");
@@ -21,7 +21,7 @@ class PlatformSpecificCode {
   }
 }
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
   runApp(const ProviderScope(child: MyApp()));

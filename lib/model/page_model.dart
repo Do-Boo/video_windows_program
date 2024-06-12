@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PageNameModel {
-  final String name;
+  final String title;
   final Widget page;
 
-  PageNameModel({required this.name, required this.page});
+  PageNameModel({required this.title, required this.page});
 }
