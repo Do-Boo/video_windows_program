@@ -12,22 +12,21 @@ class _MainPageState extends ConsumerState<MainPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    var size = MediaQuery.of(context).size;
+    final width = MediaQuery.of(context).size.width;
 
-    final itemWidth = size.width / 2;
-    final itemHeight = itemWidth * 0.8;
+    final widgetWidth = width / (width / 300).toInt();
 
     return Padding(
       padding: const EdgeInsets.all(4),
       child: GridView.count(
-        crossAxisCount: 4,
-        childAspectRatio: (itemWidth / itemHeight),
+        crossAxisCount: (width / 300).toInt(),
+        childAspectRatio: (widgetWidth / (widgetWidth * 0.8)),
         children: List.generate(100, (index) {
           return Container(
             alignment: Alignment.center,
-            // height: 30,
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(6),
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: theme.hintColor,
                 width: 1,

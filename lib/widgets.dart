@@ -2,22 +2,8 @@ import "dart:io" show Platform;
 import "package:bitsdojo_window/bitsdojo_window.dart";
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
-// Make sure to add following packages to pubspec.yaml:
-// * media_kit
-// * media_kit_video
-// * media_kit_libs_video
 import "package:media_kit/media_kit.dart"; // Provides [Player], [Media], [Playlist] etc.
 import "package:media_kit_video/media_kit_video.dart"; // Provides [VideoController] & [Video] etc.
-
-class PlatformSpecificCode {
-  static const MethodChannel _channel = MethodChannel("com.example.videoApp");
-
-  static Future<String> getNativeData() async {
-    final String result = await _channel.invokeMethod("getNativeData");
-    return result;
-  }
-}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

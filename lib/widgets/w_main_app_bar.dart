@@ -16,6 +16,7 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
     final theme = Theme.of(context);
     final isDarkTheme = ref.watch(themeProvider);
     final sideBarVisible = ref.watch(sideBarProvider);
+    final pageName = ref.watch(pageNameProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       height: 56,
@@ -27,7 +28,10 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
               color: theme.hintColor,
             ),
             onPressed: () {
-              ref.read(sideBarProvider.notifier).state = !sideBarVisible;
+              if (pageName != "Home") {
+                Scaffold.of(context).openDrawer();
+              }
+              ref.read(sideBarProvider.notifier).state = Scaffold.of(context).isDrawerOpen || (pageName == "Home" && !sideBarVisible);
             },
           ),
           const Text("타이틀"),
